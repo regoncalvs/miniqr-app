@@ -27,8 +27,10 @@ api.interceptors.response.use(
         message.error('Sua sessão expirou. Por favor, faça login novamente.');
       } else if (statusCode === 403) {        
         message.error('Você não tem permissão para acessar este recurso.');
-      } else if (statusCode === 400) {        
+      } else if (statusCode === 400) {    
         message.error(error.response.data.detail);
+      } else if (statusCode === 500) {    
+        message.error('Erro na requisição. Tente novamente mais tarde.');
       }
     } else if (error.request) {      
       message.error('Não foi possível obter resposta do servidor.');

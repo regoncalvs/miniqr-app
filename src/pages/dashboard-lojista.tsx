@@ -10,12 +10,23 @@ const DashboardLojista: React.FC = () => {
     const [token, setToken] = useState<string>('');
     const [loading, setLoading] = useState(false);
     const [cobrancas, setCobrancas] = useState<any[]>([]);
+    const [rotate, setRotate] = useState(false);
+
+    const handleClick = () => {
+        setRotate(true);
+        setTimeout(() => {
+            setRotate(false);
+        }, 500);
+        fetchCobrancas();
+    };
 
     const fetchCobrancas = async () => {
         setLoading(true);
         const response = await obterCobrancas();
         setCobrancas(response);
-        setLoading(false);
+        setTimeout(() => {            
+            setLoading(false);
+        }, 500);
     };
 
     useEffect(() => {
@@ -39,9 +50,9 @@ const DashboardLojista: React.FC = () => {
                             <h1 className="text-5xl font-bold align-top ">Dashboard do Lojista</h1>
                         </div>
                         <TbReload
-                            className="cursor-pointer text-indigo-500 ml-2"
+                            className={`cursor-pointer text-indigo-500 ml-2 ${rotate ? 'rotate' : ''}`}
                             size={50}
-                            onClick={fetchCobrancas}                        
+                            onClick={handleClick}                        
                         />
                     </div>
 
@@ -50,11 +61,11 @@ const DashboardLojista: React.FC = () => {
                             <NovaCobrancaForm onCobrancaAdicionada={fetchCobrancas} />
                         </div>
 
-                        <div className="w-full sm:w-1/2 lg:w-1/2 xl:w-1/4 p-4">
+                        <div className="w-full sm:w-1/2 lg:w-1/2 xl:w-7/20 py-4 px-4 2xl:px-12">
                             <StatusSummary cobrancas={cobrancas} />
                         </div>
 
-                        <div className="w-full sm:w-full lg:w-full xl:w-1/2 p-4">
+                        <div className="w-full sm:w-full lg:w-full xl:w-2/5 p-4">
                             <CobrancaList loading={loading} cobrancas={cobrancas} />
                         </div>
                     </div>

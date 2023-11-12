@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, message, Radio } from 'antd';
 import { cadastrarUsuario } from '@/services/usuarios-service';
+import RegrasSenha from './regras-senha';
 
 const CadastroUsuario: React.FC = () => {
   const [loading, setLoading] = useState(false);
+  const [senhaAtual, setSenhaAtual] = useState("");
+  const [senhaFocus, setSenhaFocus] = useState(false);
 
   const cadastrar = async (values: {
     nome: string;
@@ -12,12 +15,13 @@ const CadastroUsuario: React.FC = () => {
     rePassword: string;
     role: string;
   }) => {
+    console.log('cadastrar')
     setLoading(true);
     await cadastrarUsuario(values).then(() => {
       message.success('Usuário cadastrado com sucesso!')
     }).finally(() => {
       setLoading(false);
-    });    
+    });
   };
 
   return (
@@ -43,11 +47,27 @@ const CadastroUsuario: React.FC = () => {
         <Form.Item
           label="Senha"
           name="password"
-          rules={[{ required: true, message: 'Por favor, insira a senha!' }]}
+          rules={[
+            {
+              validator: (_: any, value: string) => {
+                const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+                if (passwordRegex.test(value)) {
+                  return Promise.resolve();
+                } else {
+                  return Promise.reject();
+                }
+              },
+            },
+          ]}
         >
-          <Input.Password placeholder="Digite a senha" className="w-full px-3 py-2 border rounded focus:outline-none focus:border-indigo-800" />
+          <Input.Password
+            onFocus={() => { setSenhaFocus(true) }}
+            onChange={(senha) => { setSenhaAtual(senha.target.value) }}
+            placeholder="Digite a senha"
+            className="w-full px-3 py-2 border rounded focus:outline-none focus:border-indigo-800"
+          />
         </Form.Item>
-
+        {senhaFocus && <RegrasSenha senha={senhaAtual} />}
         <Form.Item
           label="Repita a Senha"
           name="rePassword"

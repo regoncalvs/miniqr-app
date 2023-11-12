@@ -19,8 +19,8 @@ const NovaCobrancaForm: React.FC<NovaCobrancaFormProps> = ({ onCobrancaAdicionad
 
   return (
     <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md">
-      <h1 className="text-2xl font-bold mb-4 text-indigo-800">Nova Cobrança</h1>
-      <Form name="novaCobranca" onFinish={onFinish} labelCol={{ span: 24 }}>
+      <h1 className="text-2xl font-bold mb-4 text-center text-indigo-800">Nova Cobrança</h1>
+      <Form name="novaCobranca" className='py-4' onFinish={onFinish} labelCol={{ span: 24 }}>
         <Form.Item
           label="Descrição"
           name="descricao"
@@ -38,7 +38,7 @@ const NovaCobrancaForm: React.FC<NovaCobrancaFormProps> = ({ onCobrancaAdicionad
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" loading={loading} className="w-full bg-amber-500">
+          <Button type="primary" htmlType="submit" loading={loading} className="w-full mt-5 bg-amber-500">
             Criar Cobrança
           </Button>
         </Form.Item>

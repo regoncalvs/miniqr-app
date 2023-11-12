@@ -46,7 +46,7 @@ const CancelarCobrancaList: React.FC<CancelarCobrancaListProps> = ({ cobrancasPa
 
   return (
     <div className="max-w-2xl mx-auto mt-8 p-6 bg-white rounded-md shadow-md">
-      <h2 className="text-2xl font-bold mb-4 text-indigo-800">Cobranças Pagas</h2>
+      <h2 className="text-2xl font-bold mb-4 text-center text-indigo-800">Cobranças Pagas</h2>
       <Table dataSource={cobrancasPagas} columns={columns} loading={loadingData} rowKey={(record) => record.id} />
     </div>
   );

@@ -11,13 +11,24 @@ const DashboardAdministrador: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const [cobrancasPagas, setCobrancasPagas] = useState<any[]>([]);
     const [cobrancas, setCobrancas] = useState<any[]>([]);
+    const [rotate, setRotate] = useState(false);
+
+    const handleClick = () => {
+        setRotate(true);
+        setTimeout(() => {
+            setRotate(false);
+        }, 500);
+        fetchCobrancasCancelamento();
+    };
 
     const fetchCobrancasCancelamento = async () => {
         setLoading(true);
         const response = await obterCobrancasAdmin();
         setCobrancas(response);
         setCobrancasPagas(response.filter((cobranca: any) => cobranca.status === 'P'));
-        setLoading(false);
+        setTimeout(() => {            
+            setLoading(false);
+        }, 500);
     };
 
     useEffect(() => {
@@ -41,19 +52,19 @@ const DashboardAdministrador: React.FC = () => {
                             <h1 className="text-5xl font-bold align-top ">Dashboard do Administrador</h1>
                         </div>
                         <TbReload
-                            className="cursor-pointer text-indigo-500 ml-2"
+                            className={`cursor-pointer text-indigo-500 ml-2 ${rotate ? 'rotate' : ''}`}
                             size={50}
-                            onClick={fetchCobrancasCancelamento}                        
+                            onClick={handleClick}
                         />
                     </div>
 
-                    <div className="flex flex-wrap">                        
+                    <div className="flex flex-wrap">
                         <div className="w-full sm:w-1/2 lg:w-1/2 xl:w-1/4 p-4">
                             <StatusSummary cobrancas={cobrancas} />
                         </div>
 
                         <div className="w-full sm:w-full lg:w-full xl:w-1/2 p-4">
-                            <CancelarCobrancaList loadingData={loading} cobrancasPagas={cobrancasPagas} onCobrancaCancelada={fetchCobrancasCancelamento}/>
+                            <CancelarCobrancaList loadingData={loading} cobrancasPagas={cobrancasPagas} onCobrancaCancelada={fetchCobrancasCancelamento} />
                         </div>
                     </div>
                 </div>

@@ -18,8 +18,8 @@ const LoginPage: React.FC = () => {
     login(values).then(() => {
       let role = localStorage.getItem('role');
       router.push(`/dashboard-${role}`);
+      setLoading(false);
     });
-    setLoading(false);
   };
 
   return (

@@ -2,7 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+@keyframes rotateAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.container {
+  max-width: 1800px !important;
+}
+
+.ant-table-thead .ant-table-cell {
+  background-color: theme('colors.indigo.200') !important;
+}
+
+.table-striped-rows tr:nth-child(2n) td {
+  background-color:  theme('colors.indigo.50');
+}
+
+.ant-table-cell {
+  padding: 10px !important;
+}
+
+.rotate {
+  animation: rotateAnimation 0.5s linear;
+}
+
+body, label, li, tr, td {
   font-family: 'Poppins', sans-serif;
 }
 

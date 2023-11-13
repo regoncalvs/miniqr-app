@@ -15,7 +15,6 @@ const CadastroUsuario: React.FC = () => {
     rePassword: string;
     role: string;
   }) => {
-    console.log('cadastrar')
     setLoading(true);
     await cadastrarUsuario(values).then(() => {
       message.success('Usuário cadastrado com sucesso!')
@@ -26,7 +25,7 @@ const CadastroUsuario: React.FC = () => {
 
   return (
     <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md">
-      <h1 className="text-2xl font-bold mb-4 text-indigo-800">Cadastro de Usuário</h1>
+      <h1 className="sm:text-2xl text-xl font-bold mb-4 text-indigo-800">Cadastro de Usuário</h1>
       <Form name="cadastroUsuario" onFinish={cadastrar} labelCol={{ span: 24 }}>
         <Form.Item
           label="Nome"

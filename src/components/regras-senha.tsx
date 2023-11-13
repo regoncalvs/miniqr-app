@@ -50,8 +50,8 @@ const RegrasSenha: React.FC<SenhaRulesProps> = ({ senha }) => {
 
 
     useEffect(() => {
-        if (regras.some(r => !r.check)) {setSenhaValida(false);}
-        else {console.log('else'); setSenhaValida(true);}
+        if (regras.some(r => !r.check)) setSenhaValida(false);
+        else setSenhaValida(true);
     }, [regras])
 
     return (

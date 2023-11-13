@@ -12,7 +12,7 @@
 }
 
 .container {
-  max-width: 1800px !important;
+  max-width: 1700px !important;
 }
 
 .ant-table-thead .ant-table-cell {
@@ -27,11 +27,15 @@
   padding: 10px !important;
 }
 
+.ant-table-cell:has(button) {
+  padding: 0px 12px !important;
+}
+
 .rotate {
   animation: rotateAnimation 0.5s linear;
 }
 
-body, label, li, tr, td {
+body, label, li, tr, td, span, h1 {
   font-family: 'Poppins', sans-serif;
 }
 

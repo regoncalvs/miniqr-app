@@ -30,7 +30,6 @@ const DashboardLojista: React.FC = () => {
     };
 
     useEffect(() => {
-        // Verificar se estamos no navegador antes de usar o localStorage
         if (typeof window !== 'undefined') {
             const storedToken = localStorage.getItem('token') || '';
             setToken(storedToken);
@@ -47,7 +46,7 @@ const DashboardLojista: React.FC = () => {
                 <div className="container mx-auto p-8">
                     <div className="flex items-center  mb-4">
                         <div className="flex items-center">
-                            <h1 className="text-5xl font-bold align-top ">Dashboard do Lojista</h1>
+                            <h1 className="sm:text-5xl text-2xl font-bold align-top ">Dashboard do Lojista</h1>
                         </div>
                         <TbReload
                             className={`cursor-pointer text-indigo-500 ml-2 ${rotate ? 'rotate' : ''}`}

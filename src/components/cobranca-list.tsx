@@ -74,6 +74,7 @@ const CobrancaList: React.FC<CobrancaListProps> = ({ cobrancas, loading }) => {
         dataSource={cobrancasPaginadas}
         columns={columns}
         loading={loading}
+        scroll={{x: 500}}
         rowKey={(record) => record.id}
         pagination={false}
       />   

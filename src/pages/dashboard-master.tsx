@@ -6,25 +6,24 @@ const DashboardLojista: React.FC = () => {
     const [token, setToken] = useState<string>('');
 
     useEffect(() => {
-        // Verificar se estamos no navegador antes de usar o localStorage
         if (typeof window !== 'undefined') {
             const storedToken = localStorage.getItem('token') || '';
             setToken(storedToken);
         }
-    }, []);   
+    }, []);
 
     return (
         !!token && (
             <Layout>
                 <div className="container mx-auto p-8">
-                    <div className="flex items-center  mb-4">
-                        <div className="flex items-center">
-                            <h1 className="text-5xl font-bold align-top ">Dashboard Master</h1>
-                        </div>                        
+                    <div className="flex items-center justify-center mb-4">
+                        <div className="text-center">
+                            <h1 className="sm:text-5xl text-2xl font-bold">Dashboard Master</h1>
+                        </div>
                     </div>
 
                     <div className="flex flex-wrap">
-                        <div className="w-full sm:w-1/2 lg:w-1/2 xl:w-1/4 p-4">
+                        <div className="w-full p-4">
                             <CadastroUsuario />
                         </div>
                     </div>

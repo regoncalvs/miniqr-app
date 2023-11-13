@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, InputNumber } from 'antd';
 import { novaCobranca } from '@/services/cobrancas-service';
 
 interface NovaCobrancaFormProps {
@@ -34,7 +34,7 @@ const NovaCobrancaForm: React.FC<NovaCobrancaFormProps> = ({ onCobrancaAdicionad
           name="valor"
           rules={[{ required: true, message: 'Por favor, insira o valor!' }]}
         >
-          <Input type="number" min={0} placeholder="Digite o valor" className='w-full px-3 py-2 border rounded focus:outline-none focus:border-indigo-800' />
+          <InputNumber className='w-full border h-10 rounded focus:outline-none focus:border-indigo-800' />
         </Form.Item>
 
         <Form.Item>

@@ -11,6 +11,11 @@
   }
 }
 
+.ant-input-number-input {
+  height: 38px;
+  border-radius: 4px !important;
+}
+
 .container {
   max-width: 1700px !important;
 }

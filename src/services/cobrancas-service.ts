@@ -3,13 +3,13 @@ import { message } from "antd";
 
 const rotaCobrancas = '/cobrancas';
 
-export const obterCobrancas = async () => {
+export const obterStatusCobrancas = async () => {
     const config = obterConfig();
     const response = await api.get(`${rotaCobrancas}/lojista`, config);
     return response.data;
 };
 
-export const obterCobrancasAdmin = async () => {
+export const obterCobrancas = async () => {
     const config = obterConfig();
     const response = await api.get(rotaCobrancas, config);
     return response.data;
@@ -28,6 +28,13 @@ export const cancelarCobranca = async (cobrancaId: string) => {
     const config = obterConfig();
     await api.post(`${rotaCobrancas}/${cobrancaId}/cancelar`, config).then(() => {
         message.success('Cobrança cancelada com sucesso!');
+    });
+}
+
+export const pagarCobranca = async (cobrancaId: string) => {
+    const config = obterConfig();
+    await api.post(`${rotaCobrancas}/${cobrancaId}/pagar`, config).then(() => {
+        message.success('Cobrança paga com sucesso!');
     });
 }
 

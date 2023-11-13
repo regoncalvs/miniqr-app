@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import StatusSummary from '../components/status-resumo';
-import { obterCobrancasAdmin } from '@/services/cobrancas-service';
+import StatusResumo from '../components/status-resumo';
+import { obterCobrancas } from '@/services/cobrancas-service';
 import Layout from '@/app/layout';
 import { TbReload } from 'react-icons/tb'
 import CancelarCobrancaList from '@/components/cancelar-cobranca-list';
@@ -22,7 +22,7 @@ const DashboardAdministrador: React.FC = () => {
 
     const fetchCobrancasCancelamento = async () => {
         setLoading(true);
-        const response = await obterCobrancasAdmin();
+        const response = await obterCobrancas();
         setCobrancas(response);
         setCobrancasPagas(response.filter((cobranca: any) => cobranca.status === 'P'));
         setTimeout(() => {            
@@ -58,7 +58,7 @@ const DashboardAdministrador: React.FC = () => {
 
                     <div className="flex flex-wrap">
                         <div className="w-full sm:w-full lg:w-full xl:w-1/3 p-4">
-                            <StatusSummary cobrancas={cobrancas} />
+                            <StatusResumo cobrancas={cobrancas} />
                         </div>
 
                         <div className="w-full sm:w-full lg:w-full xl:w-2/3 p-4">

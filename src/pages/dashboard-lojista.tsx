@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import NovaCobrancaForm from '../components/nova-cobranca';
 import CobrancaList from '../components/cobranca-list';
 import StatusSummary from '../components/status-resumo';
-import { obterCobrancas } from '@/services/cobrancas-service';
+import { obterStatusCobrancas } from '@/services/cobrancas-service';
 import Layout from '@/app/layout';
 import { TbReload } from 'react-icons/tb'
 
@@ -22,7 +22,7 @@ const DashboardLojista: React.FC = () => {
 
     const fetchCobrancas = async () => {
         setLoading(true);
-        const response = await obterCobrancas();
+        const response = await obterStatusCobrancas();
         setCobrancas(response);
         setTimeout(() => {            
             setLoading(false);
